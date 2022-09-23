@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Microsoft Onboarding App</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/sidePanel.css" rel="stylesheet">
+    <style>
+        .card-img-top {
+            width: 40%;
+            height: 40%;
+            display: block;
+        }
+        .card-img-top-payroll{
+            width: 30%;
+            height: 30%;
+            display: block;
+        }
+        body{
+          padding: 2rem 0rem;
+        }
+        .card {
+          margin-bottom: 2rem;
+        }
+        .labelNotStarted {
+          color: red;
+          padding: 8px;
+        }
+
+        .spanNotStarted {background-color: #ffb6c1;}
+
+        .labelInProgress {
+          color: #1e90ff;
+          padding: 8px;
+        }
+
+        .spanInProgress {background-color: #add8e6;}
+
+        .labelCompleted {
+          color: #50c878;
+          padding: 8px;
+        }
+
+        .labelCompletedLearnings {
+          color: #50c878;
+          padding: 5px;
+        }
+
+        .spanCompleted {background-color: #afe1af;}
+
+        .labelNA {
+          color: #FFBF00;
+          padding: 8px;
+        }
+
+        .spanNA {background-color: #FFFF8F;}
+    </style>
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+              <img src="img/MicrosoftLogo.png" width="150" height="50" class="inline-block align-top" />
+            </div>
+            <ul class="nav navbar-nav">
+              <li><a onclick="onMainDivOnLoad()">Home</a></li>
+              <li><a onclick="humanResourcesButtonOnClick()">Human Resources</a></li>
+              <li><a onclick="payrollButtonOnClick()">Payroll</a></li>
+              <li><a onclick="learningsButtonOnClick()">Learnings</a></li>
+              <li><a onclick="teamonboardingButtonOnClick()">Team Onboarding</a></li>
+              <li>
+                <form class="form-inline" style="padding-top:3%;float: right;">
+                  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+              </li>
+            </ul>
+            
+            <img src="img/HumanLogo.png" width="40" height="50" style="float: right;padding-top:0.5%;padding-bottom:0.5%;">
+        </div>
+    </nav>
+
+    <div id="main">
+      <div>
+        <img src="img/BrandCentral.png" alt="New Employees Onboarding" width="100%">
+        <h2>We're thrilled to have you here.</h2>
+        <p>This application will guide you to find the most relevant information as a new employee at Microsoft as well as your resources for supporting a new joiner in your team.</p>
+      </div>
+      <div class="container">
+          <table id="taskstable" class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col"></th>
+                <th scope="col">Tasks</th>
+                <th scope="col">Due Date <img src="img/SortIcon.png" width="15px" height="15px" onclick="sortTable()"></th>
+                <th scope="col">Status</th>
+                <th scope="col">Category</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row"><input class="form-check-input" type="checkbox" id="tablecheck1" name="" value=""></th>
+                <td onclick="window.open('https://hrprofile.microsoft.com/ESS/Index','mywindow');" style="cursor: pointer;">Review & Update Details</td>
+                <td>10/10/2022</td>
+                <td id="tablecheck1td"><span class="labelNotStarted spanNotStarted">Not Started</span></td>
+                <td>Human Resources</td>
+              </tr>
+              <tr>
+                <th scope="row"><input class="form-check-input" type="checkbox" id="tablecheck2" name="" value="" checked disabled></th>
+                <td onclick="window.open('https://microsoft.sharepoint.com/teams/ITHyd/Pages/ContactIT.aspx','mywindow');" style="cursor: pointer;">Collect / Set-up Your Laptop</td>
+                <td>15/10/2022</td>
+                <td id="tablecheck2td"><span class="labelCompleted spanCompleted">&nbsp;Completed</span></td>
+                <td>Human Resources</td>
+              </tr>
+              <tr>
+                <th scope="row"><input class="form-check-input" type="checkbox" id="tablecheck3" name="" value=""></th>
+                <td onclick="window.open('https://microsoft.sharepoint.com/teams/ProcureWeb/Pages/Payments.aspx?TAB=2%3ACorporate%20Card','mywindow');" style="cursor: pointer;">Initiate Amex Card Application</td>
+                <td>17/10/2022</td>
+                <td id="tablecheck3td"><span class="labelInProgress spanInProgress">In Progress</span></td>
+                <td>Human Resources</td>
+              </tr>
+              <tr>
+                <th scope="row"><input class="form-check-input" type="checkbox" id="tablecheck4" name="" value=""></th>
+                <td onclick="window.open('https://cim/DirectDeposit/Pages/default.aspx','mywindow');" style="cursor: pointer;">Initiate MS Expense Account</td>
+                <td>20/10/2022</td>
+                <td id="tablecheck4td"><span class="labelNotStarted spanNotStarted">Not Started</span></td>
+                <td>Human Resources</td>
+              </tr>
+              <tr>
+                <th scope="row"><input class="form-check-input" type="checkbox" id="tablecheck5" name="" value=""></th>
+                <td onclick="window.open('https://microsoft.sharepoint.com/sites/security/Regions/Asia/India/Pages/Parking.aspx','mywindow');" style="cursor: pointer;">Car Parking Sticker</td>
+                <td>31/10/2022</td>
+                <td id="tablecheck5td"><span class="labelNotStarted spanNotStarted">Not Started</span></td>
+                <td>Human Resources</td>
+              </tr>
+              <tr>
+                <th scope="row"><input class="form-check-input" type="checkbox" id="tablecheck6" name="" value="" checked disabled></th>
+                <td onclick="window.open('https://ap.benefitsasia.com/ba2_web_production/microsoftin/BA2Login/tabid/1164/Default.aspx','mywindow');" style="cursor: pointer;">Medical Benefits</td>
+                <td>10/11/2022</td>
+                <td id="tablecheck6td"><span class="labelCompleted spanCompleted">&nbsp;Completed</span></td>
+                <td>Human Resources</td>
+              </tr>
+              <tr>
+                <th scope="row"></th>
+                <td onclick="window.open('https://msvacation.microsoft.com/','mywindow');" style="cursor: pointer;">Leave Balance & Holidays</td>
+                <td>--/--/----</td>
+                <td><span class="labelNA spanNA">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+                <td>Human Resources</td>
+              </tr>
+              <tr>
+                <th scope="row"><input class="form-check-input" type="checkbox" id="tablecheck7" name="" value="" checked disabled></th>
+                <td onclick="window.open('https://microsoft.sharepoint.com/sites/HRweb/SitePages/pfdescindia.aspx','mywindow');" style="cursor: pointer;">Update Provident Fund Details</td>
+                <td>01/10/2022</td>
+                <td id="tablecheck7td"><span class="labelCompleted spanCompleted">&nbsp;Completed</span></td>
+                <td>Payroll</td>
+              </tr>
+              <tr>
+                <th scope="row"><input class="form-check-input" type="checkbox" id="tablecheck8" name="" value=""></th>
+                <td onclick="window.open('https://microsoft.sharepoint.com/sites/HRweb/SitePages/pfdescindia.aspx','mywindow');" style="cursor: pointer;">Update Bank information</td>
+                <td>03/10/2022</td>
+                <td id="tablecheck8td"><span class="labelInProgress spanInProgress">In Progress</span></td>
+                <td>Payroll</td>
+              </tr>
+              <tr>
+                <th scope="row"><input class="form-check-input" type="checkbox" id="tablecheck9" name="" value=""></th>
+                <td onclick="window.open('https://microsoft.sharepoint.com/sites/HRweb/SitePages/pfdescindia.aspx','mywindow');" style="cursor: pointer;">Update FBP</td>
+                <td>05/10/2022</td>
+                <td id="tablecheck9td"><span class="labelInProgress spanInProgress">In Progress</span></td>
+                <td>Payroll</td>
+              </tr>
+              <tr>
+                <th scope="row"><input class="form-check-input" type="checkbox" id="tablecheck10" name="" value=""></th>
+                <td onclick="window.open('https://microsoft.sharepoint.com/sites/HRweb/SitePages/pfdescindia.aspx','mywindow');" style="cursor: pointer;">Update PAN</td>
+                <td>20/10/2022</td>
+                <td id="tablecheck10td"><span class="labelNotStarted spanNotStarted">Not Started</span></td>
+                <td>Payroll</td>
+              </tr>
+              <tr>
+                <th scope="row"><input class="form-check-input" type="checkbox" id="tablecheck11" name="" value=""></th>
+                <td onclick="window.open('https://microsoft.sharepoint.com/sites/HRweb/SitePages/pfdescindia.aspx','mywindow');" style="cursor: pointer;">Update Tax Declarations</td>
+                <td>20/10/2022</td>
+                <td id="tablecheck11td"><span class="labelNotStarted spanNotStarted">Not Started</span></td>
+                <td>Payroll</td>
+              </tr>
+              <tr>
+                <th scope="row"></th>
+                <td onclick="window.open('https://microsoft.sharepoint.com/sites/HRweb/SitePages/pfdescindia.aspx','mywindow');" style="cursor: pointer;">Submit Reimbursement Claims</td>
+                <td>--/--/----</td>
+                <td><span class="labelNA spanNA">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+                <td>Payroll</td>
+              </tr>
+              <tr>
+                <th scope="row"></th>
+                <td onclick="window.open('https://microsoft.sharepoint.com/sites/HRweb/SitePages/pfdescindia.aspx','mywindow');" style="cursor: pointer;">My Payslips</td>
+                <td>--/--/----</td>
+                <td><span class="labelNA spanNA">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+                <td>Payroll</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+    </div>
+
+    <div id="humanresourcesdiv" style="display:'none';">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="card" onclick="window.open('https://hrprofile.microsoft.com/ESS/Index','mywindow');" style="cursor: pointer;">
+                        <img src="img/SmartCard.png" class="card-img-top" alt="img/SmartCard.png">
+                        <div class="card-body">
+                          <h5 class="card-title"><b>Review & Update Details</b></h5>
+                          <p class="card-text">Update your profile and your emergency contact details.</p>
+                          <div class="card-footer">
+                              <small class="text-muted">Due 10/10/2022</small>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="card" onclick="window.open('https://microsoft.sharepoint.com/teams/ITHyd/Pages/ContactIT.aspx','mywindow');" style="cursor: pointer;">
+                        <img src="img/Laptop.png" class="card-img-top" alt="img/Laptop.png">
+                        <div class="card-body">
+                          <h5 class="card-title"><b>Collect / Set-up Your Laptop</b></h5>
+                          <p class="card-text">Contact TechLink (IT Support) at your Location.</p>
+                          <div class="card-footer">
+                            <small class="text-muted">Due 15/10/2022</small>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="card" onclick="window.open('https://microsoft.sharepoint.com/teams/ProcureWeb/Pages/Payments.aspx?TAB=2%3ACorporate%20Card','mywindow');" style="cursor: pointer;">
+                        <img src="img/AmexCard.jpg" class="card-img-top" alt="img/AmexCard.jpg">
+                        <div class="card-body">
+                          <h5 class="card-title"><b>Initiate Amex Card Application</b></h5>
+                          <p class="card-text">View important guidelines and apply.</p>
+                          <div class="card-footer">
+                            <small class="text-muted">Due 17/10/2022</small>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-4">
+                  <div class="card" onclick="window.open('https://cim/DirectDeposit/Pages/default.aspx','mywindow');" style="cursor: pointer;">
+                      <img src="img/Expense.png" class="card-img-top" alt="img/Expense.png">
+                      <div class="card-body">
+                        <h5 class="card-title"><b>Initiate MS Expense Account</b></h5>
+                        <p class="card-text">Go to Direct Deposit.</p>
+                        <div class="card-footer">
+                          <small class="text-muted">Due 20/10/2022</small>
+                        </div>
+                      </div>
+                  </div>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-4">
+                  <div class="card" onclick="window.open('https://microsoft.sharepoint.com/sites/security/Regions/Asia/India/Pages/Parking.aspx','mywindow');" style="cursor: pointer;">
+                      <img src="img/CarParking.png" class="card-img-top" alt="img/CarParking.png">
+                      <div class="card-body">
+                        <h5 class="card-title"><b>Car Parking Sticker</b></h5>
+                        <p class="card-text">Register your vehicle and get a car parking sticker.</p>
+                        <div class="card-footer">
+                          <small class="text-muted">Due 31/10/2022</small>
+                        </div>
+                      </div>
+                  </div>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-4">
+                  <div class="card" onclick="window.open('https://ap.benefitsasia.com/ba2_web_production/microsoftin/BA2Login/tabid/1164/Default.aspx','mywindow');" style="cursor: pointer;">
+                    <img src="img/Medical.jpg" class="card-img-top" alt="img/Medical.jpg">
+                    <div class="card-body">
+                      <h5 class="card-title"><b>Medical Benefits</b></h5>
+                      <p class="card-text">Enrol yourself and your family members for Insurance.</p>
+                      <div class="card-footer">
+                        <small class="text-muted">Due 10/11/2022</small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-4">
+                  <div class="card" onclick="window.open('https://msvacation.microsoft.com/','mywindow');" style="cursor: pointer;">
+                      <img src="img/Holidays.jpg" class="card-img-top" alt="img/Holidays.jpg">
+                      <div class="card-body">
+                        <h5 class="card-title"><b>Leave Balance & Holidays</b></h5>
+                        <p class="card-text">Know the Holidays and the Leave Balance and record leaves.</p>
+                        <div class="card-footer">
+                          <small class="text-muted">Due --/--/----</small>
+                        </div>
+                      </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="payrolldiv" style="display:'none';">
+      <div class="container">
+          <div class="row">
+              <div class="col-12 col-sm-6 col-lg-4">
+                  <div class="card" onclick="window.open('https://microsoft.sharepoint.com/sites/HRweb/SitePages/pfdescindia.aspx','mywindow');" style="cursor: pointer;">
+                      <img src="img/PF.jpg" class="card-img-top-payroll" alt="img/PF.jpg">
+                      <div class="card-body">
+                        <h5 class="card-title"><b>Update Provident Fund Details</b></h5>
+                        <p class="card-text">It is mandatory for all employees to update this information. All new joiners should 
+                          update this within the first week of getting their access.</p>
+                        <div class="card-footer">
+                            <small class="text-muted">Due 01/10/2022</small>
+                        </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-12 col-sm-6 col-lg-4">
+                  <div class="card" onclick="window.open('https://aka.ms/ey-myspace','mywindow');" style="cursor: pointer;">
+                      <img src="img/Bank.png" class="card-img-top-payroll" alt="img/Bank.png">
+                      <div class="card-body">
+                        <h5 class="card-title"><b>Update Bank information</b></h5>
+                        <p class="card-text">Check and update (only if required) details of your Bank account where your salary needs to be transferred. Select appropriate account and update your details.</p>
+                        <div class="card-footer">
+                          <small class="text-muted">Due 03/10/2022</small>
+                        </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-12 col-sm-6 col-lg-4">
+                  <div class="card" onclick="window.open('https://aka.ms/ey-myspace','mywindow');" style="cursor: pointer;">
+                      <img src="img/FBP.png" class="card-img-top-payroll" alt="img/FBP.png">
+                      <div class="card-body">
+                        <h5 class="card-title"><b>Update FBP</b></h5>
+                        <p class="card-text">Access to change the FBP allocation will be given only twice in a year i.e. in April and October. Apart from this, FBP allocation access will be at the time of joining.
+                        <div class="card-footer">
+                          <small class="text-muted">Due 15/10/2022</small>
+                        </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-12 col-sm-6 col-lg-4">
+                <div class="card" onclick="window.open('https://aka.ms/ey-myspace','mywindow');" style="cursor: pointer;">
+                    <img src="img/Pan.png" class="card-img-top-payroll" alt="img/Pan.png">
+                    <div class="card-body">
+                      <h5 class="card-title"><b>Update PAN</b></h5>
+                      <p class="card-text">PAN is the most important identity number for an individual basis which the individual gets registered with the Income Tax Department of India.</p>
+                      <div class="card-footer">
+                        <small class="text-muted">Due 20/10/2022</small>
+                      </div>
+                    </div>
+                </div>
+              </div>
+              <div class="col-12 col-sm-6 col-lg-4">
+                <div class="card" onclick="window.open('https://aka.ms/ey-myspace','mywindow');" style="cursor: pointer;">
+                    <img src="img/Tax.png" class="card-img-top-payroll" alt="img/Tax.png">
+                    <div class="card-body">
+                      <h5 class="card-title"><b>Update Tax Declarations</b></h5>
+                      <p class="card-text">Tax declaration page is to capture the assumptions of your investments during the year. Hence this declaration should be in line with your actual investment plan. </p>
+                      <div class="card-footer">
+                        <small class="text-muted">Due 20/10/2022</small>
+                      </div>
+                    </div>
+                </div>
+              </div>
+              <div class="col-12 col-sm-6 col-lg-4">
+                <div class="card" onclick="window.open('https://aka.ms/ey-myspace','mywindow');" style="cursor: pointer;">
+                  <img src="img/Reimbursement.png" class="card-img-top-payroll" alt="img/Reimbursement.png">
+                  <div class="card-body">
+                    <h5 class="card-title"><b>Submit Reimbursement Claims</b></h5>
+                    <p class="card-text">All benefit related reimbursement claims can be submitted. Eligibility to claim LTA and Car Maintenance reimbursements is based on your correct FBP allocation and Company policy.</p>
+                    <div class="card-footer">
+                      <small class="text-muted">Due --/--/----</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-sm-6 col-lg-4">
+                <div class="card" onclick="window.open('https://aka.ms/ey-myspace','mywindow');" style="cursor: pointer;">
+                    <img src="img/Payslip.png" class="card-img-top-payroll" alt="img/Payslip.png">
+                    <div class="card-body">
+                      <h5 class="card-title"><b>My Payslips</b></h5>
+                      <p class="card-text">Payslips will be available one day after the salary pay-out. Payslips are categorized into salary payslips and reimbursement payslips.</p>
+                      <div class="card-footer">
+                        <small class="text-muted">Due --/--/----</small>
+                      </div>
+                    </div>
+                </div>
+              </div>
+          </div>
+      </div>
+    </div>
+
+    <div id="learningsdiv" style="display:'none';">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-sm-6 col-lg-4">
+            <div class="card" style ="margin: 10px;border: unset;">
+              <img src="img/course2.jpeg" alt="Avatar" style="width:100%">
+              <div class="card-body">
+                <h5 class="card-title"><b>Customer Obsession</b></h5>
+                <small class="text-muted">Due 10/31/2022</small> 
+                <div id="customCheck1div" class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" id="customCheck1">
+                  <label class="custom-control-label" for="customCheck1">Mark as Complete</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-4">
+            <div class="card" style ="margin: 10px;border: unset;">
+              <img src="img/course4.jpeg" alt="Avatar" style="width:100%">
+              <div class="card-body">
+                <h5 class="card-title"><b>Culture</b></h5>
+                <small class="text-muted">Due 10/31/2022</small>
+                <div id="customCheck2div" class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" id="customCheck2">
+                  <label class="custom-control-label" for="customCheck2">Mark as Complete</label>
+                </div>
+              </div>
+            </div> 
+          </div>
+          <div class="col-12 col-sm-6 col-lg-4">
+            <div class="card" style ="margin: 10px;border: unset;">
+              <img src="img/course3.jpeg" alt="Avatar" style="width:100%">
+              <div class="card-body">
+                <h5 class="card-title"><b>Engineering Foundations Module 1</b></h5>
+                <small class="text-muted">Due 10/31/2022</small>
+                <div id="customCheck3div" class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" id="customCheck3">
+                  <label class="custom-control-label" for="customCheck3">Mark as Complete</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-4">
+            <div class="card" style ="margin: 10px;border: unset;">
+              <img src="img/course4.jpeg" alt="Avatar" style="width:100%">
+              <div class="card-body">
+                <h5 class="card-title"><b>Engineering Foundations Module 2</b></h5>
+                <small class="text-muted">Due 10/31/2022</small>
+                <div id="customCheck4div" class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" id="customCheck4">
+                  <label class="custom-control-label" for="customCheck4">Mark as Complete</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-4">
+            <div class="card" style ="margin: 10px;border: unset;">
+              <img src="img/course2.jpeg" alt="Avatar" style="width:100%">
+              <div class="card-body">
+                <h5 class="card-title"><b>Engineering Foundations Module 3</b></h5>
+                <small class="text-muted">Due 10/31/2022</small>
+                <div id="customCheck5div" class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" id="customCheck5">
+                  <label class="custom-control-label" for="customCheck5">Mark as Complete</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-4">
+            <div class="card" style ="margin: 10px;border: unset;">
+              <img src="img/course3.jpeg" alt="Avatar" style="width:100%">
+              <div class="card-body">
+                <h5 class="card-title"><b>Engineering Foundations Module 4</b></h5>
+                <small class="text-muted">Due 10/31/2022</small>
+                <div id="customCheck6div" class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" id="customCheck6">
+                  <label class="custom-control-label" for="customCheck6">Mark as Complete</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="teamonboardingdiv" style="display:'none';">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-sm-6 col-lg-4">
+            <div class="card" style ="margin: 10px;border: unset;">
+              <img src="img/saw.png" alt="img/saw.png" class="card-img-top" style="height:150px;width:150px;">
+              <div class="card-body">
+                <h5 class="card-title"><b>Raise request for SAW</b></h5>
+                <small class="text-muted">Due 10/31/2022</small> 
+                <div id="toCheck1div" class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" id="toCheck1">
+                  <label class="custom-control-label" for="toCheck1">Mark as Complete</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-4">
+            <div class="card" style ="margin: 10px;border: unset;">
+              <img src="img/access_card.png" alt="img/access_card.png" class="card-img-top" style="height:150px;width:150px;">
+              <div class="card-body">
+                <h5 class="card-title"><b>Access card request</b></h5>
+                <small class="text-muted">Due 10/31/2022</small>
+                <div id="toCheck2div" class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" id="toCheck2">
+                  <label class="custom-control-label" for="toCheck2">Mark as Complete</label>
+                </div>
+              </div>
+            </div> 
+          </div>
+          <div class="col-12 col-sm-6 col-lg-4">
+            <div class="card" style ="margin: 10px;border: unset;">
+              <img src="img/Yubikey.png" alt="img/Yubikey.png" class="card-img-top" style="height:150px;width:150px;">
+              <div class="card-body">
+                <h5 class="card-title"><b>Request for Yubikey</b></h5>
+                <small class="text-muted">Due 10/31/2022</small>
+                <div id="toCheck3div" class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" id="toCheck3">
+                  <label class="custom-control-label" for="toCheck3">Mark as Complete</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-4">
+            <div class="card" style ="margin: 10px;border: unset;">
+              <img src="img/Software.png" alt="img/Software.png" class="card-img-top" style="height:150px;width:150px;">
+              <div class="card-body">
+                <h5 class="card-title"><b>Install Mandatory Softwares</b></h5>
+                <small class="text-muted">Due 10/31/2022</small>
+                <div id="toCheck4div" class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" id="toCheck4">
+                  <label class="custom-control-label" for="toCheck4">Mark as Complete</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-4">
+            <div class="card" style ="margin: 10px;border: unset;">
+              <img src="img/CodeRepo.png" alt="img/CodeRepo.png" class="card-img-top" style="height:150px;width:150px;">
+              <div class="card-body">
+                <h5 class="card-title"><b>Setup and Build Code Repos</b></h5>
+                <small class="text-muted">Due 10/31/2022</small>
+                <div id="toCheck5div" class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" id="toCheck5">
+                  <label class="custom-control-label" for="toCheck5">Mark as Complete</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-4">
+            <div class="card" style ="margin: 10px;border: unset;">
+              <img src="img/TestEnvironment.png" alt="img/TestEnvironment.png" class="card-img-top" style="height:150px;width:150px;">
+              <div class="card-body">
+                <h5 class="card-title"><b>Setup a Test Environment</b></h5>
+                <small class="text-muted">Due 10/31/2022</small>
+                <div id="toCheck6div" class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" id="toCheck6">
+                  <label class="custom-control-label" for="toCheck6">Mark as Complete</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/sidePanel.js"></script>
+    <script>
+        var dir = "desc";
+
+        function teamonboardingButtonOnClick() {
+            document.getElementById('main').style.display = "none";
+            document.getElementById('humanresourcesdiv').style.display = "none";
+            document.getElementById('payrolldiv').style.display = "none";
+            document.getElementById('learningsdiv').style.display = "none";
+            document.getElementById('teamonboardingdiv').style.display = "block";
+        }
+
+        function learningsButtonOnClick() {
+            document.getElementById('main').style.display = "none";
+            document.getElementById('humanresourcesdiv').style.display = "none";
+            document.getElementById('payrolldiv').style.display = "none";
+            document.getElementById('learningsdiv').style.display = "block";
+            document.getElementById('teamonboardingdiv').style.display = "none";
+        }
+
+        function payrollButtonOnClick() {
+            document.getElementById('main').style.display = "none";
+            document.getElementById('humanresourcesdiv').style.display = "none";
+            document.getElementById('payrolldiv').style.display = "block";
+            document.getElementById('learningsdiv').style.display = "none";
+            document.getElementById('teamonboardingdiv').style.display = "none";
+        }
+
+        function humanResourcesButtonOnClick() {
+            document.getElementById('main').style.display = "none";
+            document.getElementById('humanresourcesdiv').style.display = "block";
+            document.getElementById('payrolldiv').style.display = "none";
+            document.getElementById('learningsdiv').style.display = "none";
+            document.getElementById('teamonboardingdiv').style.display = "none";
+        }
+
+        function onMainDivOnLoad() {
+            document.getElementById('main').style.display = "block";
+            document.getElementById('humanresourcesdiv').style.display = "none";
+            document.getElementById('payrolldiv').style.display = "none";
+            document.getElementById('learningsdiv').style.display = "none";
+            document.getElementById('teamonboardingdiv').style.display = "none";
+        }
+
+        window.onload = function() {
+            document.getElementById('humanresourcesdiv').style.display = "none";
+            document.getElementById('payrolldiv').style.display = "none";
+            document.getElementById('learningsdiv').style.display = "none";
+            document.getElementById('teamonboardingdiv').style.display = "none";
+            sortTable();
+        };
+
+        function convertDate(d) {
+          var p = d.split("/");
+          return +(p[2]+p[1]+p[0]);
+        }
+
+        function sortTable() {
+          var table, rows, switching, i, x, y, shouldSwitch, switchcount, xValue, yValue = 0;
+          var n = 1;
+          table = document.getElementById("taskstable");
+          switching = true;
+          /*Make a loop that will continue until
+          no switching has been done:*/
+          while (switching) {
+            //start by saying: no switching is done:
+            switching = false;
+            rows = table.rows;
+            /*Loop through all table rows (except the
+            first, which contains table headers):*/
+            for (i = 1; i < (rows.length - 1); i++) {
+              //start by saying there should be no switching:
+              shouldSwitch = false;
+              /*Get the two elements you want to compare,
+              one from current row and one from the next:*/
+              x = rows[i].getElementsByTagName("TD")[n];
+              y = rows[i + 1].getElementsByTagName("TD")[n];
+              if(x.innerHTML.toLowerCase() == "--/--/----")
+                xValue = 0;
+              else
+                xValue = convertDate(x.innerHTML.toLowerCase());
+              if(y.innerHTML.toLowerCase() == "--/--/----")
+                yValue = 0;
+              else
+                yValue = convertDate(y.innerHTML.toLowerCase());
+              /*check if the two rows should switch place,
+              based on the direction, asc or desc:*/
+              if (dir == "asc") {
+                if (xValue > yValue) {
+                  //if so, mark as a switch and break the loop:
+                  shouldSwitch= true;
+                  break;
+                }
+              } else if (dir == "desc") {
+                if (xValue < yValue) {
+                  //if so, mark as a switch and break the loop:
+                  shouldSwitch = true;
+                  break;
+                }
+              }
+            }
+            if (shouldSwitch) {
+              /*If a switch has been marked, make the switch
+              and mark that a switch has been done:*/
+              rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+              switching = true;
+              //Each time a switch is done, increase this count by 1:
+              switchcount ++;      
+            } else {
+              /*If no switching has been done AND the direction is "asc",
+              set the direction to "desc" and run the while loop again.*/
+              if (switchcount == 0 && dir == "asc") {
+                dir = "desc";
+                switching = true;
+              }
+            }
+          }
+          if(dir == "asc")
+            dir = "desc";
+          else
+            dir = "asc";
+        }
+
+      document.getElementById('taskstable').addEventListener('click', function (e) {
+        if (e.target.type === 'checkbox') {
+            var id = e.target.id;
+            if(id.includes("tablecheck")) {
+                var value = document.getElementById(e.target.id).checked;
+                if(value==true) {
+                  var tdId = id + "td";
+                  document.getElementById(tdId).innerHTML = "<span class='labelCompleted spanCompleted'>&nbsp;Completed</span>";
+                  document.getElementById(id).disabled = true;
+              }
+            }
+        }
+      });
+
+      document.getElementById('learningsdiv').addEventListener('click', function (e) {
+        if (e.target.type === 'checkbox') {
+            var id = e.target.id;
+            if(id.includes("customCheck")) {
+                var value = document.getElementById(e.target.id).checked;
+                if(value==true) {
+                  var divId = id + "div";
+                  document.getElementById(divId).innerHTML = "<span class='labelCompletedLearnings spanCompleted'>&nbsp;Completed&nbsp;</span>";
+              }
+            }
+        }
+      });
+
+      document.getElementById('teamonboardingdiv').addEventListener('click', function (e) {
+        if (e.target.type === 'checkbox') {
+            var id = e.target.id;
+            if(id.includes("toCheck")) {
+                var value = document.getElementById(e.target.id).checked;
+                if(value==true) {
+                  var divId = id + "div";
+                  document.getElementById(divId).innerHTML = "<span class='labelCompletedLearnings spanCompleted'>&nbsp;Completed&nbsp;</span>";
+              }
+            }
+        }
+      });
+    </script>
+  </body>
+</html>
